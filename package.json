@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha"
+  },
+  "dependencies": {
+    "express": "^4.0"
+  },
+  "devDependencies": {
+    "mocha": "^9.1.4"
+  }
+}
