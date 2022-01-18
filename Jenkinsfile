@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    
+    triggers {
+        pollSCM('* * * * *')
+    }
 
     stages {
         stage('Setup') {
@@ -9,36 +13,41 @@ pipeline {
                 }
             }
         }
+
         stage('Checkout') {
             steps {
                 checkout scm 
             }
         }
+
         stage('Audit') {
             steps {
                 sh 'npm audit'
             }
         }
+
         stage('Unit tests') {
             steps {
                 sh 'npm install'
                 sh 'npm test'
             }
         }
+
         stage('Build') {
             steps {
                 sh 'docker build -t ${TAG} .'
             }
         }
+
         stage('Push to Registry') {
             steps {
                 withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]) {
                     sh "heroku container:login"
                     sh 'docker push ${TAG}'
                 }
-                
             }
         }
+
         stage('Deploy') {
             steps {
                 withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]) {
