@@ -9,7 +9,7 @@ pipeline {
                 }
             }
         }
-        stage('Audit') {
+        stage('Checkout') {
             steps {
                 checkout scm 
             }
@@ -19,14 +19,14 @@ pipeline {
                 sh 'npm audit'
             }
         }
-        stage('Run unit tests') {
+        stage('Unit tests') {
             steps {
                 sh 'npm install'
                 sh 'npm test'
             }
         }
         
-        stage('Build docker image') {
+        stage('Build') {
             steps {
                 sh 'docker build -t ${TAG} .'
             }
