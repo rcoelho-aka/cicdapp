@@ -4,7 +4,7 @@ const port = process.env.PORT || 3000
 const version = process.env.VERSION || 'local'
 
 app.get('/', (req, res) => {
-  res.send(`Hello World!! \n Version: ${version}`)
+  res.send(`Hello Planet! \n Version: ${version}`)
 })
 
 app.listen(port, () => {
