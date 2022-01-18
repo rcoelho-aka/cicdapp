@@ -25,7 +25,6 @@ pipeline {
                 sh 'npm test'
             }
         }
-        
         stage('Build') {
             steps {
                 sh 'docker build -t ${TAG} .'
