@@ -31,20 +31,30 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'docker build -t ${TAG} .'
+                sh "docker build -t ${TAG} ."
             }
         }
 
         stage('Push to Registry') {
+            when {
+                expression {
+                    env.PUBLISH_AND_DEPLOY == "YES"
+                }
+            }
             steps {
                 withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]) {
-                    sh "heroku container:login"
-                    sh 'docker push ${TAG}'
+                    sh 'heroku container:login'
+                    sh "docker push ${TAG}"
                 }
             }
         }
 
         stage('Deploy') {
+            when {
+                expression {
+                    env.PUBLISH_AND_DEPLOY == "YES"
+                }
+            }
             steps {
                 withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]) {
                     sh "heroku container:release web -a ${env.JOB_NAME}"
