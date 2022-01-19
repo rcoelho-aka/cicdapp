@@ -8,7 +8,6 @@ pipeline {
                     script {
                         env.TAG = "registry.heroku.com/${env.JOB_NAME}/web"
                     }
-                     steps{
                 }
             }
 
@@ -41,7 +40,7 @@ pipeline {
                 steps {
                     withCredentials([string(CredentialsId: 'heorku-key', variable: 'HEROKU_API_KEY')]) {
                     sh "heroku container:login"
-                    sh 'docker push ${TAG}'
+                    sh 'docker push ${TAG}'}
                 }
             }
 
