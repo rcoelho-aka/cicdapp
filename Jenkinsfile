@@ -3,7 +3,6 @@ pipeline {
 	stages {
 
 		stage('Setup') {
-			when{ parameter "MODE"}
 			steps{
 				script{env.TAG = "registry.heroku.com/${env.JOB_NAME}/web"}
 			}
