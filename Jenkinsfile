@@ -18,7 +18,7 @@ pipeline {
         
         stage('Audit') {
             steps {
-                sh 'npm audit'
+        //        sh 'npm audit'
             }
         }
 
@@ -48,7 +48,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]) {
                     sh 'heroku container:release web -a ${env.JOB_NAME}'
-                    sh 'heroku container:set VERSION=${env.BUILD_NUMBER} -a ${env.JOB_NAME}'
+                    sh 'heroku config:set VERSION=${env.BUILD_NUMBER} -a ${env.JOB_NAME}'
                 }
             }
         }
