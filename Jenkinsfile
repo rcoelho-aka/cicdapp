@@ -6,8 +6,9 @@ pipeline {
             stage ('Setup') {
                 steps{             
                     script {
-                        env.TAG = "registry.heroku.com/$(env.JOB_NAME)/web"
+                        env.TAG = "registry.heroku.com/${env.JOB_NAME}/web"
                     }
+                     steps{
                 }
             }
 
