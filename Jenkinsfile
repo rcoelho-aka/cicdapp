@@ -40,7 +40,7 @@ pipeline {
 		stage('Push to Registry'){
 			when{
 				expression{
-					env.ondemand = true
+					env.ondemand
 				}
 			}
 			steps{
@@ -54,10 +54,10 @@ pipeline {
 		stage('Deploy'){
 			when{
 				expression{
-					env.ondemand = true
+					env.ondemand
 				}
 			}
-						
+
 			steps{
 				withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]){
 					sh "heroku container:release web -a ${env.JOB_NAME}"
