@@ -6,6 +6,8 @@ pipeline{
             steps {
                 script {
                     env.TAG = "registry.heroku.com/${env.JOB_NAME}/web"
+                    def isStartedByUser = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause) != null
+                    echo "${isStartedByUser}"
                 }
             }
         }
