@@ -5,7 +5,6 @@ pipeline{
         stage('Setup'){
             when {
                 expression {
-                    echo env.BUILD_CAUSE
                     env.BUILD_CAUSE == "SCMTRIGGER"
                 }
             }
