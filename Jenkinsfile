@@ -38,7 +38,7 @@ pipeline {
 
             stage ('Push to Registry') {
                 steps {
-                    withCredentials([string(CredentialsId: 'heorku-key', variable: 'HEROKU_API_KEY')]) {
+                    withCredentials([string(CredentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]) {
                     sh "heroku container:login"
                     sh 'docker push ${TAG}'}
                 }
@@ -46,7 +46,7 @@ pipeline {
 
             stage ('Deploy') {    
                 steps {
-                    withCredentials([string(CredentialsId: 'heorku-key', variable: 'HEROKU_API_KEY')]) {
+                    withCredentials([string(CredentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]) {
                     sh "heroku container:release web -a ${env.JOB_NAME}"
                     sh "heroku config:set VERSION=${end.BUILD_NUMBER} -a ${end.JOB_NAME}"
                     }
