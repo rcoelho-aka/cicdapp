@@ -16,11 +16,11 @@ pipeline {
             }
         }
         
-        stage('Audit') {
-            steps {
+        //stage('Audit') {
+        //    steps {
         //        sh 'npm audit'
-            }
-        }
+        //    }
+        //}
 
         stage('Unit tests') {
             steps {
