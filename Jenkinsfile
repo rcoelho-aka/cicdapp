@@ -35,7 +35,10 @@ pipeline {
         stage('Push to registry'){
             when{
                 not{
-                    triggeredBy "TimerTrigger"
+                    anyOf{
+                        triggeredBy "SCMTrigger"
+                        triggeredBy "TimerTrigger"
+                    }
                 }
             }
             steps{
@@ -48,7 +51,10 @@ pipeline {
         stage('Deploy'){
             when{
                 not{
-                    triggeredBy "TimerTrigger"
+                    anyOf{
+                        triggeredBy "SCMTrigger"
+                        triggeredBy "TimerTrigger"
+                    }
                 }
             }
             steps{
