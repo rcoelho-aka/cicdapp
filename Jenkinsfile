@@ -4,7 +4,7 @@ pipeline{
         stage('Setup'){
             when{
                 expression{
-                    env.SCAN_TEST_BUILD == "TRIGGER"
+                    env.SCAN_TEST_BUILD == "TRIGGER" || env.SCAN_TEST_BUILD == "FULL"
                 }
             }
             steps{
@@ -16,7 +16,7 @@ pipeline{
         stage('Checkout'){
             when{
                 expression{
-                    env.SCAN_TEST_BUILD == "TRIGGER"
+                    env.SCAN_TEST_BUILD == "TRIGGER" || env.SCAN_TEST_BUILD == "FULL"
                 }
             }
             steps{
@@ -26,7 +26,7 @@ pipeline{
         stage('Audit'){
             when{
                 expression{
-                    env.SCAN_TEST_BUILD == "TRIGGER"
+                    env.SCAN_TEST_BUILD == "TRIGGER" || env.SCAN_TEST_BUILD == "FULL"
                 }
             }
             steps{
@@ -36,7 +36,7 @@ pipeline{
         stage('Unit tests'){
             when{
                 expression{
-                    env.SCAN_TEST_BUILD == "TRIGGER"
+                    env.SCAN_TEST_BUILD == "TRIGGER" || env.SCAN_TEST_BUILD == "FULL"
                 }
             }
             steps{
@@ -47,7 +47,7 @@ pipeline{
         stage('Build'){
             when{
                 expression{
-                    env.SCAN_TEST_BUILD == "TRIGGER"
+                    env.SCAN_TEST_BUILD == "TRIGGER" || env.SCAN_TEST_BUILD == "FULL"
                 }
             }
             steps{
@@ -57,7 +57,7 @@ pipeline{
         stage('Push to Registry'){
             when{
                 expression{
-                    env.SCAN_TEST_BUILD == "MANUAL"
+                    env.SCAN_TEST_BUILD == "FULL"
                 }
             }
             steps{
@@ -70,7 +70,7 @@ pipeline{
         stage('Deploy'){
             when{
                 expression{
-                    env.SCAN_TEST_BUILD == "MANUAL"
+                    env.SCAN_TEST_BUILD == "FULL"
                 }
             }
             steps{
