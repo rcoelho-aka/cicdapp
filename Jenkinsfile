@@ -16,12 +16,6 @@ pipeline {
             }
         }
 
-        stage('Audit') {
-            steps {
-                sh 'npm audit'
-            }
-        }
-
         stage('Unit tests') {
             steps {
                 sh 'npm install'
