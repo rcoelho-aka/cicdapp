@@ -35,7 +35,7 @@ pipeline {
             }
         }
 
-        stage('Depoly') {
+        stage('Deploy') {
             steps {
                 withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]) {
                     sh "heroku container:release web -a ${env.JOB_NAME}"
