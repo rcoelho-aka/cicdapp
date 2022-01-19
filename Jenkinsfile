@@ -48,7 +48,7 @@ pipeline {
         
         stage('Deploy'){
             steps{
-                withCredentials([String(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]){
+                withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]){
                     sh "heroku container:release web -a ${env.vdf-aka-17}"
                     sh "heroku config:set VERSION=${env.BUILD_NUMBER} -a ${env.JOB_NAME}"
                 }
