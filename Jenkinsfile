@@ -32,7 +32,9 @@ pipeline {
         }
         stage('Push to Registry') {
             when {
-                env.BUILD_DEPLOY true
+                expression {
+                    env.BUILD_DEPLOY true
+                }
             }
             steps {
                 withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]) {
