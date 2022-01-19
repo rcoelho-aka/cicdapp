@@ -14,17 +14,32 @@ pipeline{
             }
         }
         stage('Audit'){
+            when{
+                expression{
+                    env.SCAN_TEST_BUILD == "MANUAL"
+                }
+            }
             steps{
                 sh 'npm audit'
             }
         }
         stage('Unit tests'){
+            when{
+                expression{
+                    env.SCAN_TEST_BUILD == "MANUAL"
+                }
+            }
             steps{
                 sh 'npm install'
                 sh 'npm test'
             }
         }
         stage('Build'){
+            when{
+                expression{
+                    env.SCAN_TEST_BUILD == "MANUAL"
+                }
+            }
             steps{
                 sh 'docker build -t ${TAG} .'
             }
