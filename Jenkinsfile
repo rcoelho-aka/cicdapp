@@ -33,7 +33,7 @@ pipeline{
         stage('Push to Registry'){
             when{
                 expression{
-                    env.SCAN_TEST_BUILD == "FULL"
+                    env.PIPELINE_EXECUTION_TYPE == "FULL"
                 }
             }
             steps{
@@ -46,7 +46,7 @@ pipeline{
         stage('Deploy'){
             when{
                 expression{
-                    env.SCAN_TEST_BUILD == "FULL"
+                    env.PIPELINE_EXECUTION_TYPE == "FULL"
                 }
             }
             steps{
