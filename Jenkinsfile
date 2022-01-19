@@ -7,8 +7,6 @@ pipeline {
             }
         }
     }
-
-    stages {
         stage('Setup') {
             steps {
                 script {
@@ -16,7 +14,7 @@ pipeline {
                 }
             }
         }
-    }
+    
 
     stage('Checkout') {
         steps {
@@ -61,3 +59,4 @@ pipeline {
         }
     }
 }
+
