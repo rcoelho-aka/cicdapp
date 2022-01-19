@@ -12,7 +12,7 @@ describe('Dummy test cases', function() {
 
   describe('Test Case B', function() {
     it('Should also always pass', function() {
-      assert(true)
+      assert(false)
     });
   });
 
