@@ -6,7 +6,7 @@ pipeline {
                 echo 'Hello World'
             }
         }
-    }
+
         stage('Setup') {
             steps {
                 script {
@@ -16,45 +16,46 @@ pipeline {
         }
     
 
-    stage('Checkout') {
-        steps {
-            checkout scm
-        }
-    }
-
-    stage('Audit') {
-        steps {
-            sh 'npm audit'
-        }
-    }
-
-    stage('Unit tests') {
-        steps {
-            sh 'npm install'
-            sh 'npm test'
-        }
-    }
-
-    stage('Build') {
-        steps {
-            sh 'docker build -t ${TAG} .'
-        }
-    }
-
-    stage('Push toRegistry') {
-        steps {
-            withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU-API-KEY')]) {
-                sh "heroku container:login"
-                sh 'docker push ${TAG} '
+        stage('Checkout') {
+            steps {
+                checkout scm
             }
         }
-    }
 
-    stage('Deploy') {
-        steps {
-            withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]) {
-                sh "heroku container:release web -a ${env.JOB_NAME}"
-                sh "heroku config:set VERSION=${env.BUILD_NUMBER} -a ${env.JOB_NAME}"
+        stage('Audit') {
+            steps {
+                sh 'npm audit'
+            }
+        }
+
+        stage('Unit tests') {
+            steps {
+                sh 'npm install'
+                sh 'npm test'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'docker build -t ${TAG} .'
+            }
+        }
+
+        stage('Push toRegistry') {
+            steps {
+                withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU-API-KEY')]) {
+                    sh "heroku container:login"
+                    sh 'docker push ${TAG} '
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]) {
+                    sh "heroku container:release web -a ${env.JOB_NAME}"
+                    sh "heroku config:set VERSION=${env.BUILD_NUMBER} -a ${env.JOB_NAME}"
+                }
             }
         }
     }
