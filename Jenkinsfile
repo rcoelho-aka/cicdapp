@@ -12,11 +12,11 @@ pipeline {
 				checkout scm
 			}
 		}
-		stage ('Audit') {
-			steps {
-				sh 'npm audit'
-			}
-		}
+		// stage ('Audit') {
+		// 	steps {
+		// 		sh 'npm audit'
+		// 	}
+		// }
 		stage ('Unit tests'){
 			steps {
 				sh 'npm install'
