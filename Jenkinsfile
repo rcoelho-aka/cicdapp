@@ -38,7 +38,9 @@ pipeline {
 		}
 		
 		stage('Push to Registry'){
-			when { equals expected: true, actual: env.ondemand }
+			when { 
+				 expression{ env.ondemand }
+			}
 			steps{
 				withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]){
 					sh "heroku container:login"
@@ -48,7 +50,9 @@ pipeline {
 		}
 
 		stage('Deploy'){
-			when { equals expected: true, actual: env.ondemand }
+			when { 
+				expression{ env.ondemand }
+			}
 
 			steps{
 				withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]){
