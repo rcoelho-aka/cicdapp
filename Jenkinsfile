@@ -32,7 +32,7 @@ pipeline {
         
         stage('Build'){
             steps{
-                sh 'docker build -t ${TAG} .'
+                sh "docker build -t ${TAG} ."
             }
         }
         
@@ -40,7 +40,7 @@ pipeline {
             steps{
                 withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]){
                     sh "heroku container:login"
-                    sh 'docker push ${TAG}'
+                    sh "docker push ${TAG}"
                     
                 }
             }
