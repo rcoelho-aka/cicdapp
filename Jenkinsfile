@@ -3,7 +3,9 @@ pipeline{
     stages {
         stage('Setup') {
             steps{
-                env.TAG = "registry.heruku.com/${env.JOB_NAME}/web"
+                script{
+                    env.TAG = "registry.heruku.com/${env.JOB_NAME}/web"
+                }
             }
         }
         stage('Checkout'){
