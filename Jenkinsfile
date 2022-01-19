@@ -8,7 +8,6 @@ pipeline {
             }
         }
     
-
     stage ('Checkout') {
         steps {
             checkout scm
@@ -49,7 +48,7 @@ pipeline {
                 sh "heroku container: release web -a ${env.JOB_NAME}"
                 sh "heroku config:set VERSION=${env.BUILD_NAME} -a ${env.JOB_NAME}"
                 }
+            }
         }
     }
-}
 }
