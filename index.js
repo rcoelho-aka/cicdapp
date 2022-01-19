@@ -12,6 +12,7 @@ app.listen(port, () => {
 })
 
 
+//To test the error in UnitTest Stage
 const add = (a = 0, b = 0) => {
   if (typeof a !== 'number' || typeof b !== 'number') {
     return 0;

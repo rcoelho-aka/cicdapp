@@ -15,9 +15,11 @@ describe('Dummy test cases', function () {
 
 });
 
+//To test the error in UnitTest Stage
 describe("Add function", () => {
   it("should return 2 added numbers", () => {
     const result = add(2, 2);
-    expect(result).to.be.eq(5);
+    //expect(result).to.be.eq(5);//to cause error
+    expect(result).to.be.eq(4);
   });
 });
