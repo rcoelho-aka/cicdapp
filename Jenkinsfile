@@ -26,7 +26,7 @@ pipeline{
         }
         stage('Build'){
             steps{
-                sh 'docker build -t ${TAG}'
+                sh 'docker build -t ${TAG} .'
             }
         }
         stage('Push to Registry'){
