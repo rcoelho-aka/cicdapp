@@ -10,3 +10,12 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`App listening at port ${port}`)
 })
+
+
+// const add = (a = 0, b = 0) => {
+//   if (typeof a !== 'number' || typeof b !== 'number') {
+//     return 0;
+//   }
+//   return a + b;
+// };
+

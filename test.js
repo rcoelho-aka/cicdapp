@@ -15,9 +15,9 @@ describe('Dummy test cases', function () {
 
 });
 
-describe("Add function", () => {
-  it("should return 2 added numbers", () => {
-    const result = add(2, 2);
-    expect(result).to.be.eq(5);
-  });
-});
+// describe("Add function", () => {
+//   it("should return 2 added numbers", () => {
+//     const result = add(2, 2);
+//     expect(result).to.be.eq(5);
+//   });
+// });
