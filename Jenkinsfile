@@ -6,8 +6,6 @@ pipeline{
             steps {
                 script {
                     env.TAG = "registry.heroku.com/${env.JOB_NAME}/web"
-                    def isStartedByUser = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause) != null
-                    echo "${isStartedByUser}"
                 }
             }
         }
@@ -33,6 +31,7 @@ pipeline{
             }
         }
         stage('Push to Registry') {
+            when { not { triggeredBy 'SCMTrigger' } }
             steps {
                 withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]) {
                     sh "heroku container:login"
@@ -41,6 +40,7 @@ pipeline{
             }
         }
         stage('Deploy') {
+            when { not { triggeredBy 'SCMTrigger' } }
             steps {
                 withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]) {
                     sh "heroku container:release web -a ${env.JOB_NAME}"
