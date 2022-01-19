@@ -6,6 +6,7 @@ pipeline {
             steps{
                 script{
                     env.TAG = "registry.heroku.com/${env.JOB_NAME}/web"
+                    echo env.GitHubApp
                 }
             }
         }
