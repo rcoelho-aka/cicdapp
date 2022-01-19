@@ -4,7 +4,7 @@ pipeline{
         stage('Setup'){
             when{
                 expression{
-                    env.SCAN_TEST_BUILD == "MANUAL"
+                    env.SCAN_TEST_BUILD == "TRIGGER"
                 }
             }
             steps{
@@ -16,7 +16,7 @@ pipeline{
         stage('Checkout'){
             when{
                 expression{
-                    env.SCAN_TEST_BUILD == "MANUAL"
+                    env.SCAN_TEST_BUILD == "TRIGGER"
                 }
             }
             steps{
