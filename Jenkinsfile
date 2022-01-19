@@ -2,6 +2,11 @@ pipeline{
     agent any
     stages{
         stage('Setup'){
+            when{
+                expression{
+                    env.SCAN_TEST_BUILD == "MANUAL"
+                }
+            }
             steps{
                 script{
                     env.TAG = "registry.heroku.com/${env.JOB_NAME}/web"
@@ -9,6 +14,11 @@ pipeline{
             }
         }
         stage('Checkout'){
+            when{
+                expression{
+                    env.SCAN_TEST_BUILD == "MANUAL"
+                }
+            }
             steps{
                 checkout scm
             }
@@ -16,7 +26,7 @@ pipeline{
         stage('Audit'){
             when{
                 expression{
-                    env.SCAN_TEST_BUILD == "MANUAL"
+                    env.SCAN_TEST_BUILD == "TRIGGER"
                 }
             }
             steps{
@@ -26,7 +36,7 @@ pipeline{
         stage('Unit tests'){
             when{
                 expression{
-                    env.SCAN_TEST_BUILD == "MANUAL"
+                    env.SCAN_TEST_BUILD == "TRIGGER"
                 }
             }
             steps{
@@ -37,7 +47,7 @@ pipeline{
         stage('Build'){
             when{
                 expression{
-                    env.SCAN_TEST_BUILD == "MANUAL"
+                    env.SCAN_TEST_BUILD == "TRIGGER"
                 }
             }
             steps{
@@ -45,6 +55,11 @@ pipeline{
             }
         }
         stage('Push to Registry'){
+            when{
+                expression{
+                    env.SCAN_TEST_BUILD == "MANUAL"
+                }
+            }
             steps{
                 withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]){
                     sh "heroku container:login"
@@ -53,6 +68,11 @@ pipeline{
             }
         }
         stage('Deploy'){
+            when{
+                expression{
+                    env.SCAN_TEST_BUILD == "MANUAL"
+                }
+            }
             steps{
                 withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]){
                     sh "heroku container:release web -a ${env.JOB_NAME}"
