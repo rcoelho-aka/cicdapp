@@ -32,7 +32,7 @@ pipeline {
         stage('Push to Registry') {
             when {
                 expression {
-                    env.PUBLISH_AND_DEPLOY
+                    env.PUBLISH_AND_DEPLOY == "YES"
                 }
             } 
             steps {
@@ -46,7 +46,7 @@ pipeline {
         stage('Deploy') {
             when {
                 expression {
-                    env.PUBLISH_AND_DEPLOY
+                    env.PUBLISH_AND_DEPLOY == "YES"
                 }
             }
             steps {
