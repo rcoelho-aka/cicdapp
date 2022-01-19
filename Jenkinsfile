@@ -4,9 +4,7 @@ pipeline{
     stages{
         stage('Setup'){
             when {
-                expression {
-                    env.BUILD_CAUSE == "SCMTRIGGER"
-                }
+                equals expected: "SCMTRIGGER", actual:  env.BUILD_CAUSE
             }
             steps {
                 script {
@@ -21,9 +19,7 @@ pipeline{
         }
         stage('Audit'){
             when {
-                expression {
-                    env.BUILD_CAUSE == "SCMTRIGGER"
-                }
+                equals expected: "SCMTRIGGER", actual:  env.BUILD_CAUSE
             }
             steps {
                 sh 'npm audit'
@@ -42,9 +38,7 @@ pipeline{
         }
         stage('Push to Registry'){
             when {
-                expression {
-                    env.BUILD_CAUSE == "SCMTRIGGER"
-                }
+                equals expected: "SCMTRIGGER", actual:  env.BUILD_CAUSE
             }            
             steps {
                 withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]){
@@ -55,9 +49,7 @@ pipeline{
         }
         stage('Deploy'){
             when {
-                expression {
-                    env.BUILD_CAUSE == "SCMTRIGGER"
-                }
+                equals expected: "SCMTRIGGER", actual:  env.BUILD_CAUSE
             }            
             steps {
                 withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]){
