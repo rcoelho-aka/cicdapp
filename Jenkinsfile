@@ -18,7 +18,7 @@ pipeline{
         }
         stage('Unit tests'){
             steps{
-                sh 'npm insall'
+                sh 'npm install'
                 sh 'npm test'
             }
         }
@@ -29,7 +29,7 @@ pipeline{
         }
         stage('Push to Registry'){
             steps{
-                withCredentials([string](credentialsId: 'heroku-key', variables: 'HEROKU_API_KEY')]){
+                withCredentials([string(credentialsId: 'heroku-key', variables: 'HEROKU_API_KEY')]){
                     sh "heroku container:login"
                     sh 'docker push ${TAG}'
                 }
