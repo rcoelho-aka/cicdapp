@@ -1,7 +1,9 @@
 pipeline {
 	agent any
 	stages {
+
 		stage('Setup') {
+			when{ parameter "MODE"}
 			steps{
 				script{env.TAG = "registry.heroku.com/${env.JOB_NAME}/web"}
 			}
@@ -28,6 +30,12 @@ pipeline {
 			}
 		}
 		stage ('Push to registry') {
+			when{
+				expression{
+					env.MODE == "Publish and deploy"
+				}
+			}
+
 			steps {
 				withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]){
 					sh "heroku container:login"
