@@ -1,6 +1,6 @@
 pipeline{
     agent any
-    stges {
+    stages {
         stage('Setup') {
             steps{
                 env.TAG = "registry.heruku.com/${env.JOB_NAME}/web"
@@ -8,7 +8,7 @@ pipeline{
         }
         stage('Checkout'){
             steps{
-                chekout scm
+                checkout scm
             }
         }
         stage('Audit'){
