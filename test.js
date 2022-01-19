@@ -8,8 +8,8 @@ describe('Dummy test cases', function () {
   });
 
   describe('Test Case B', function () {
-    it('Should also always fail for test propuse', function () {
-      assert(false);
+    it('Should also always pass', function () {
+      assert(true);
     });
   });
 
