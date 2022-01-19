@@ -40,7 +40,7 @@ pipeline {
             steps{
                 withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]){
                     sh "heroku container:login"
-                    sh "docker push ${TAG}"
+                    sh 'docker push ${TAG}'
                     
                 }
             }
