@@ -15,7 +15,7 @@ const getMessage = () => {
 
 app.get('/', (req, res) => {
   const message = getMessage()
-  res.send(getMessage())
+  res.send(message)
 })
 
 module.exports = app;
