@@ -14,16 +14,6 @@ pipeline{
                 checkout scm
             }
         }
-        stage('Audit'){
-            when {
-                expression {
-                    env.PUBLISH_AND_DEPLOY
-                }
-            }
-            steps {
-                sh 'npm audit'
-            }
-        }
         stage('Unit Tests'){
             steps {
                 sh 'npm install'
