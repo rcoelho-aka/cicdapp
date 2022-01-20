@@ -1,1 +1,4 @@
 node_modules
+xunit.xml
+coverage
+.nyc_output
