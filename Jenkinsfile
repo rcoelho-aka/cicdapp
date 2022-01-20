@@ -20,7 +20,9 @@ pipeline {
 		
 		stage('Audit'){
 			steps{
-				sh 'npm audit'
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh 'npm audit'
+                }
 			}
 		}
 
