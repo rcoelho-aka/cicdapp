@@ -6,9 +6,7 @@ const version = process.env.VERSION || 'local'
 const getMessage = () => {
   const message = `Hello World! \n Version: ${version}`
   
-  if (message.startsWith('Hello')) return message
-
-  console.log(message)
+  return message
 }
 
 app.get('/', (req, res) => {
