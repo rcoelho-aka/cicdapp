@@ -5,10 +5,8 @@ const version = process.env.VERSION || 'local'
 
 const getMessage = () => {
   const message = `Hello World! \n Version: ${version}`
-  const goodMessage = message.startsWith('Hello')
-
-  if (goodMessage)
-    return message
+  
+  if (message.startsWith('Hello')) return message
 
   console.log(message)
 }
