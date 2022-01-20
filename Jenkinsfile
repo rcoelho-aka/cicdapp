@@ -39,6 +39,14 @@ pipeline {
             }
         }
 
+        stage("Quality Gate") {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    waitForQualityGate abortPipeline: true // true = set pipeline to UNSTABLE
+                }
+            }
+        }
+
         stage('Build') {
             steps {
                sh 'docker build -t ${TAG} .' 
