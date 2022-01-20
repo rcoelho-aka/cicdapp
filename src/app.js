@@ -10,7 +10,7 @@ const getMessage = () => {
   if (goodMessage)
     return message
 
-  //console.log(message)
+  //console.log(message) //Não sei fazer testes no console.log
 }
 
 app.get('/', (req, res) => {
