@@ -16,16 +16,28 @@ pipeline {
             }
         }
 
-        stage('Audit') {
-            steps {
-                sh 'npm audit'
-            }
-        }
-
         stage('Unit tests') {
             steps {
                 sh 'npm install'
                 sh 'npm test'
+            }
+        }
+        
+        stage('Sonar') {
+            steps {
+                withSonarQubeEnv('sonarcloud') {
+                    script {
+                        def scannerHome = tool 'SonarScanner';
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=rcoelho-aka_cicdapp -Dsonar.organization=rcoelho-aka -Dsonar.sources=. -Dsonar.branch.name=${env.JOB_NAME}"
+                    }
+                    
+                }
+            }
+        }
+
+        stage("Quality Gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
             }
         }
 
