@@ -1,7 +1,7 @@
-var assert = require('assert');
-var app = require('../app.js');
-var should = require('chai').should();
-var request = require('supertest');
+const assert = require('assert');
+const app = require('./app.js');
+const should = require('chai').should();
+const request = require('supertest');
 
 describe('Dummy test cases', function () {
   describe('Test Case A', function () {
