@@ -1,5 +1,5 @@
 const assert = require('assert');
-const app = require('./app.js');
+const app = require('./src/app.js');
 const should = require('chai').should();
 const request = require('supertest');
 
