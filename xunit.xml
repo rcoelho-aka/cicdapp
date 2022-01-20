@@ -1,4 +1,5 @@
-<testsuite name="Mocha Tests" tests="2" failures="0" errors="0" skipped="0" timestamp="Thu, 20 Jan 2022 18:48:31 GMT" time="0.01">
+<testsuite name="Mocha Tests" tests="3" failures="0" errors="0" skipped="0" timestamp="Thu, 20 Jan 2022 19:19:14 GMT" time="0.066">
 <testcase classname="Dummy test cases Test Case A" name="Should always pass" time="0.001"/>
 <testcase classname="Dummy test cases Test Case B" name="Should also always pass" time="0"/>
+<testcase classname="Dummy test cases Main route" name="should return Hello World!" time="0.05"/>
 </testsuite>
