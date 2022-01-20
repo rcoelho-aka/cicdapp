@@ -8,7 +8,7 @@ describe('Dummy test cases', function () {
   });
 });
 
-describe('Test Case B', function () {
+/*describe('Test Case B', function () {
     it('Should also always pass', function () {
     assert(true)
     });
@@ -16,4 +16,4 @@ describe('Test Case B', function () {
     it('Should also not pass', function () {
     assert(false)
     });
-});
+});*/
