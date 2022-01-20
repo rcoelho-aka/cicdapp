@@ -3,26 +3,15 @@ const app = require('./src/app.js');
 const should = require('chai').should();
 const request = require('supertest');
 
-<<<<<<< HEAD
 describe('Dummy test cases', function() {
   describe('Test Case A', function() {
     it('Should always pass', function() {
-=======
-describe('Dummy test cases', function () {
-  describe('Test Case A', function () {
-    it('Should always pass', function () {
->>>>>>> vdv-aka-00
       assert(true)
     });
   });
 
-<<<<<<< HEAD
   describe('Test Case B', function() {
     it('Should also always pass', function() {
-=======
-  describe('Test Case B', function () {
-    it('Should also always pass', function () {
->>>>>>> vdv-aka-00
       assert(true)
     });
   });
