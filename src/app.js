@@ -7,14 +7,13 @@ const getMessage = () => {
   const message = `Hello World! \n Version: ${version}`
   const goodMessage = message.startsWith('Hello')
 
-  if (goodMessage == true)
+  if (goodMessage)
     return message
 
   console.log(message)
 }
 
 app.get('/', (req, res) => {
-  const message = getMessage()
   res.send(getMessage())
 })
 
