@@ -8,12 +8,10 @@ const getMessage = () => {
   const goodMessage = message.startsWith('Hello')
 
   if (goodMessage)
-    return message
-
-  console.log(message)
+    return message;
 }
 
-app.get('/', (_req, res) => {
+app.get('/', (req, res) => {
   res.send(getMessage())
 })
 
