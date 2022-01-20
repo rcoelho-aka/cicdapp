@@ -16,20 +16,20 @@ describe('Dummy test cases', function () {
     });
   });
 
-  describe('Main route', function () {
-    const version = process.env.VERSION || 'local'
-    it('should return Hello World!', function (done) {
-      request(app)
-        .get('/')
-        .expect(200)
-        .expect(function (res) {
-          res.text.should.equal(`Hello World! \n Version: ${version}`);
-        })
-        .end(function (err, res) {
-          if (err) throw err;
-          done();
-        });
-    });
-  });
+  // describe('Main route', function () {
+  //   const version = process.env.VERSION || 'local'
+  //   it('should return Hello World!', function (done) {
+  //     request(app)
+  //       .get('/')
+  //       .expect(200)
+  //       .expect(function (res) {
+  //         res.text.should.equal(`Hello World! \n Version: ${version}`);
+  //       })
+  //       .end(function (err, res) {
+  //         if (err) throw err;
+  //         done();
+  //       });
+  //   });
+  // });
 
 });
