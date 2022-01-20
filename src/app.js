@@ -7,8 +7,8 @@ const getMessage = () => {
   const message = `Hello World! \n Version: ${version}`
   const goodMessage = message.startsWith('Hello')
 
-  if (goodMessage)
-    return message
+
+  return message
 
   console.log(message)
 }
