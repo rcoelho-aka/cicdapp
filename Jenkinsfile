@@ -33,6 +33,11 @@ pipeline {
 				}
 			}
 		}
+		stage ('Quality Gate'){
+			steps {
+				waitForQualityGate abortPipeline: true
+			}
+		}
 		stage ('build') {
 			steps {
 				sh  'docker build -t ${TAG} .'
