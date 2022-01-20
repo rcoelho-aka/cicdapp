@@ -9,8 +9,6 @@ const getMessage = () => {
 
   if (goodMessage)
     return message
-
-  console.log(message)
 }
 
 app.get('/', (req, res) => {
