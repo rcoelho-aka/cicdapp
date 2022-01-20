@@ -54,6 +54,20 @@ pipeline {
                 }
             }
         }
+
+        stage('SonarQube') {
+            steps {
+                withSonarQubeEnv('sonarcloud') {
+                    script {
+                        def scannerHome = tool "SonarScanner":
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=rcoelho-aka_cicdapp -Dsonar.organization=rcoelho-aka
+-Dsonar.sources=src -Dsonar.branch.name=${env.JOB_NAME} -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info"
+                    }
+                }
+            }
+            }
+
+
     }
     
 }
