@@ -8,8 +8,6 @@ const getMessage = () => {
 
   if (message.startsWith('Hello'))
     return message;
-
-  console.log(message);
 };
 
 app.get('/', (req, res) => {
