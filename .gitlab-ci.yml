@@ -1,0 +1,23 @@
+stages:
+- build
+- deploy
+
+variables:
+  TAG: registry.heroku.com/${CI_COMMIT_BRANCH}/web
+
+docker-build-and-publish:
+  stage: build
+  image: docker:stable
+  services:
+    - docker:stable-dind
+  script:
+    - docker build -t ${TAG} .
+    - docker login -u _ -p ${HEROKU_API_KEY} registry.heroku.com
+    - docker push ${TAG}
+
+deploy-to-heroku:
+  stage: deploy
+  image: codeship/heroku-deployment
+  script:
+    - heroku container:release web -a ${CI_COMMIT_BRANCH}
+    - heroku config:set VERSION=${CI_COMMIT_SHORT_SHA} -a ${CI_COMMIT_BRANCH}
