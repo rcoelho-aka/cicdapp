@@ -60,10 +60,10 @@ pipeline {
             stage ('Push to Registry') {
                 when {
                     expression {
-                        env.onDemand == true 
+                        env.byJenkins == true 
                     }
                 }
-                
+
                 steps {
                     withCredentials([string(credentialsId: 'heroku-key', variable: 'HEROKU_API_KEY')]) {
                         sh "heroku container:login"
